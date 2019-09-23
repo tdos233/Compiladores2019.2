@@ -115,7 +115,7 @@ class Lexer(object):
                     stringNum+=char
                     char=self.proxChar()
 
-                if char in string.ascii_letters or '_':
+                if char in string.ascii_letters:
                     erroNum=1
 
                     # se não tem erro, cria o token
