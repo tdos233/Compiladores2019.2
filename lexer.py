@@ -1,3 +1,4 @@
+  
 #coding=utf-8
 import string
 import array
@@ -127,14 +128,13 @@ class Lexer(object):
             #### CHAR INVALIDO ########
             else:
                 leuDigito = 0
-                if self.posLinha == 1:
-                    self.posLinha+=128
-                print ("Erro léxico na posição", self.numLinha+1, self.posLinha-1)
+                print ("Erro léxico na posição", self.numLinha+1, self.posLinha)
                 contErro += 1
                 char=self.proxChar()
 
         ########## EOF ###########
         else:
+               
                 token = Token(Token.finalArquivo, char, None, self.numLinha, self.posLinha+1)
                 self.tokens.append(token)
 
