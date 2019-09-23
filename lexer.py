@@ -65,6 +65,7 @@ class Lexer(object):
         while char != Lexer.marcaFinal:
             if char in Lexer.branco:
                 leuDigito = 0
+                # atualiza as coordenadas
                 if char in Lexer.pulaLinha:
                     self.numLinha += 1
                     self.posLinha = 0   
