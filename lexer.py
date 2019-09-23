@@ -134,7 +134,6 @@ class Lexer(object):
 
         ########## EOF ###########
         else:
-               
                 token = Token(Token.finalArquivo, char, None, self.numLinha, self.posLinha+1)
                 self.tokens.append(token)
 
