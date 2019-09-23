@@ -164,9 +164,9 @@ pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
 
-print (entrada)
+# print (entrada)
 
 lexer = Lexer(x, vazias)
 for token in lexer.criaToken():
-    print (token)
+    # print (token)
     continue
