@@ -113,8 +113,9 @@ class Lexer(object):
                         break
                     stringNum+=char
                     char=self.proxChar()
+                    
 
-                if char not in string.digits and char != marcaFinal:
+                if char in string.ascii_letters:
                     erroNum=1
 
                     # se não tem erro, cria o token
@@ -164,9 +165,9 @@ pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
 
-# print (entrada)
+print (entrada)
 
 lexer = Lexer(x, vazias)
 for token in lexer.criaToken():
-    # print (token)
+    print (token)
     continue
