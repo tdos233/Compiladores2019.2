@@ -72,6 +72,7 @@ class Lexer(object):
 
             ########### ID #######
             elif char in string.ascii_letters:
+                    # leu um número seguido de uma letra -> erro léxico
                 if leuDigito==1:
                     print ("Erro léxico na posição", self.numLinha+1, self.posLinha-1)
                     contErro+=1
@@ -81,6 +82,7 @@ class Lexer(object):
                     stringId = char
                     char=self.proxChar()
                     while char in (string.ascii_letters + string.digits):
+                            # excedeu o tamanho máximo
                         if len(stringId)==128:
                             print ("Erro léxico na posição", self.numLinha+1, self.posLinha-1)
                             erroId=1
@@ -88,10 +90,11 @@ class Lexer(object):
                             break
                         stringId+=char
                         char=self.proxChar()
+                            # se não tem erro, cria o token
                     if not erroId:
                         token = Token(Token.identificador, stringId, self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
                         if stringId.casefold()   in Token.reservadas:
-                            ############ VERIFICA SE É RESERVADA OU IDENTIFICADOR
+                            # verifica se é palavra reservada ou identificador
                             token.tipo = Token.reservada
                         self.tokens.append(token)
 
@@ -102,7 +105,7 @@ class Lexer(object):
                 stringNum = char
                 char = self.proxChar()
                 while char in string.digits:
-                    ############# EXCEDEU O TAMANHO MÁXIMO 
+                    # excedeu o tamanho máximo
                     if len(stringNum) == 128:
                         print ("Erro léxico na posição", self.numLinha+1, self.posLinha-1)
                         contErro+=1
@@ -114,6 +117,7 @@ class Lexer(object):
                 if char in string.ascii_letters or '_':
                     erroNum=1
 
+                    # se não tem erro, cria o token
                 if not erroNum:
                         token = Token(Token.numero, stringNum, self.linhaAtual[self.numLinha], self.numLinha,
                                           self.posLinha)
@@ -125,7 +129,7 @@ class Lexer(object):
                 while char != Lexer.pulaLinha and char != marcaFinal:
                     char = self.proxChar()
            
-            #### CHAR INVALIDO ########
+            #### CARACTERE INVALIDO ########
             else:
                 leuDigito = 0
                 print ("Erro léxico na posição", self.numLinha+1, self.posLinha)
