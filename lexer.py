@@ -26,7 +26,7 @@ class Token(object):
         self.numLinha = numLinha
 
     def __str__(self):
-        return '{0}:{1}'.format(self.numLinha + 1, self.posLinha).ljust(10) + self.tipo.ljust(15) + self.valor
+        return  self.tipo.ljust(15) + self.valor
 
 class Lexer(object):
     marcaFinal = '\0'
@@ -137,37 +137,10 @@ class Lexer(object):
                 contErro += 1
                 char=self.proxChar()
 
-        ########## EOF ###########
-        else:
-                token = Token(Token.finalArquivo, char, None, self.numLinha, self.posLinha+1)
-                self.tokens.append(token)
-
+        
         if contErro == 0:
-            print ("SEM ERROS LÉXICOS")
+            print ("SEM ERROS LÉXICOS\nTokens:")
+            for token in self.tokens:
+                print(token)
    
         return self.tokens
-
-contaVazio = 0
-entrada = []
-vazias = []
-while True:
-    try:
-        contaVazio+=1
-        auxEntrada = input()
-        if not auxEntrada.strip():
-            vazias.append(contaVazio)
-        entrada.append(auxEntrada)
-    except (EOFError):
-        break
-
-marcaFinal = '\0'
-pulaLinha = '\n'
-x = pulaLinha.join(entrada)
-entrada.append(marcaFinal)
-
-# print (entrada)
-
-lexer = Lexer(x, vazias)
-for token in lexer.criaToken():
-    # print (token)
-    continue
