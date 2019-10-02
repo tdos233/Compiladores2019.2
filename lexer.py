@@ -11,7 +11,7 @@ class Token(object):
     'se', 'entao', 'fimse', 'senao', 'fimsenao',
     'mova', 'passos', 'vire', 'para',
     'pare', 'finalize', 'apague', 'lampada', 'acenda', 'aguarde', 'ate',
-    'robo', 'pronto', 'ocupado', 'parado', 'movimentando', 'frente', 'bloqueada', 'direita', 'esquerda', 'a', 'acesa', 'apagada' ]
+    'robo', 'pronto', 'ocupado', 'parado', 'movimentando', 'frente', 'bloqueada', 'direita', 'esquerda', 'a', 'acesa', 'apagada', 'apagar', 'fimprograma', 'passo' ]
 
     reservada = 'RESERVADA'
     identificador = 'ID'
@@ -92,10 +92,12 @@ class Lexer(object):
                         char=self.proxChar()
                             # se não tem erro, cria o token
                     if not erroId:
-                        token = Token(Token.identificador, stringId, self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
-                        if stringId.casefold()   in Token.reservadas:
-                            # verifica se é palavra reservada ou identificador
-                            token.tipo = Token.reservada
+                        if stringId.casefold() in Token.reservadas:
+                            # verifica se é palavra
+                            token = Token(Token.reservada, stringId.lower(), self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
+                        # é identificador
+                        else:
+                            token = Token(Token.identificador, stringId, self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
                         self.tokens.append(token)
 
             ########## NUMERO ######
@@ -113,7 +115,6 @@ class Lexer(object):
                         break
                     stringNum+=char
                     char=self.proxChar()
-                    
 
                 if char in string.ascii_letters:
                     erroNum=1
