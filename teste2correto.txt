@@ -1,0 +1,24 @@
+identificadoridentificadoridentificadoridentificadoridentificadoridentificadoridentificador1111111
+000000000001
+1111111111 robo inicio pronto ocupado parado
+acenda
+lampada #comentarios aceitam qualquer caractere !,.@---+++ e nao geram token---??
+fimtestecomentario
+apague#outrocomentario
+finalize pare mova se enquanto repita inicio defina
+aa111
+vire para esquerda
+vire para direita
+vire para esquerda
+vire para esquerda
+programainicio
+definainstrucao teste
+como
+fim
+execucaoinicio
+repita 300000 vezes
+vire para
+testeteste
+fim
+
+
