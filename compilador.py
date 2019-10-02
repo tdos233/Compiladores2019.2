@@ -19,5 +19,5 @@ marcaFinal = '\0'
 pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
-lexer = lexico.Lexer(x, vazias)
+lexer = lexer.Lexer(x, vazias)
 lexer.criaToken()
