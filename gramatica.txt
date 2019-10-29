@@ -5,6 +5,7 @@ EXECUCAO    -> 	execucaoinicio COMANDO EXECUCAO
 EXECUCAO 	->  fimprograma
 
 DECLARACAO	->	definainstrucao identificador como BLOCO DECLARACAO
+DECLARACAO	->	fimprograma
 
 BLOCO		->	inicio COMANDO  
 
@@ -12,8 +13,9 @@ COMANDO		->	ITERACAO COMANDO
 COMANDO		->	LACO COMANDO
 COMANDO		->	CONDICIONAL COMANDO
 COMANDO		->	INSTRUCAO COMANDO
-COMANDO		-> 	FIM
+COMANDO		-> 	FIM EXECUCAO
 COMANDO 	->  fim EXECUCAO
+COMANDO 	->  fimrepita EXECUCAO
 
 ITERACAO	->	repita numero vezes ITERACAO fimrepita COMANDO
 ITERACAO	->	repita numero vezes LACO fimrepita COMANDO
@@ -62,4 +64,13 @@ CONDICAO 	->	lampada acesa a direita
 CONDICAO 	->	lampada apagada a direita
 
 FIM 		-> fimexecucao fimprograma
+FIM 		-> fimrepita fim
+
+
+
+
+
+
+
+
 
