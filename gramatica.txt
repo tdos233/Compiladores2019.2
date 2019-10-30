@@ -1,11 +1,11 @@
-PROGRAMA 	 -> programainicio DECLARACAO 
-PROGRAMA 	 -> programainicio EXECUCAO 
+PROGRAMA 	 -> programainicio DECLARACAO EXECUCAO
 
 EXECUCAO    -> 	execucaoinicio COMANDO EXECUCAO
 EXECUCAO 	->  fimprograma
 
 DECLARACAO	->	definainstrucao identificador como BLOCO DECLARACAO
 DECLARACAO	->	fimprograma
+DECLARACAO	->	''
 
 BLOCO		->	inicio COMANDO  
 
@@ -65,12 +65,5 @@ CONDICAO 	->	lampada apagada a direita
 
 FIM 		-> fimexecucao fimprograma
 FIM 		-> fimrepita fim
-
-
-
-
-
-
-
 
 
