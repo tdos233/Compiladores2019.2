@@ -27,7 +27,6 @@ CONDICIONAL -> se CONDICAO entao COMANDO fimse CNDCNL
 CNDCNL -> senao COMANDO fimsenao
 CNDCNL -> ''
 
-INSTRUCAO -> mova 
 INSTRUCAO -> mova NUMPASSOS
 INSTRUCAO -> vire para SENTIDO
 INSTRUCAO -> identificador
@@ -53,6 +52,7 @@ ESTADOLAMPADA -> lampada acesa
 ESTADOLAMPADA -> lampada apagada	
 
 NUMPASSOS -> numero passos
+NUMPASSOS -> ''
 
 SENTIDO -> direita
 SENTIDO -> esquerda
