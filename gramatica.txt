@@ -1,69 +1,59 @@
-PROGRAMA 	 -> programainicio DECLARACAO EXECUCAO
+START -> PROGRAMA
 
-EXECUCAO    -> 	execucaoinicio COMANDO EXECUCAO
-EXECUCAO 	->  fimprograma
+PROGRAMA -> programainicio DEC execucaoinicio CMD fimexecucao fimprograma
 
-DECLARACAO	->	definainstrucao identificador como BLOCO DECLARACAO
-DECLARACAO	->	fimprograma
-DECLARACAO	->	''
+DEC -> DECLARACAO DEC
+DEC -> ''
 
-BLOCO		->	inicio COMANDO  
+DECLARACAO -> definainstrucao identificador como BLOCO
 
-COMANDO		->	ITERACAO COMANDO
-COMANDO		->	LACO COMANDO
-COMANDO		->	CONDICIONAL COMANDO
-COMANDO		->	INSTRUCAO COMANDO
-COMANDO		-> 	FIM EXECUCAO
-COMANDO 	->  fim EXECUCAO
-COMANDO 	->  fimrepita EXECUCAO
+BLOCO	-> inicio CMD fim
 
-ITERACAO	->	repita numero vezes ITERACAO fimrepita COMANDO
-ITERACAO	->	repita numero vezes LACO fimrepita COMANDO
-ITERACAO	->	repita numero vezes CONDICIONAL fimrepita COMANDO
-ITERACAO	->	repita numero vezes INSTRUCAO fimrepita COMANDO
+CMD		->	BLOCO
+CMD		->  COMANDO CMD
+CMD		->	''
 
-LACO		->	enquanto CONDICAO faca ITERACAO fimpara COMANDO
-LACO		->	enquanto CONDICAO faca LACO fimpara COMANDO
-LACO		->	enquanto CONDICAO faca CONDICIONAL fimpara COMANDO
-LACO		->	enquanto CONDICAO faca INSTRUCAO fimpara COMANDO
+COMANDO	-> ITERACAO
+COMANDO	-> INSTRUCAO
+COMANDO	-> LACO
+COMANDO	-> CONDICIONAL
 
-CONDICIONAL	->	se CONDICAO THEN
-THEN 		-> entao ITERACAO IF
-THEN 		-> entao LACO IF
-THEN 		-> entao CONDICIONAL IF
-THEN 		-> entao INSTRUCAO IF
-IF 			->  fimse COMANDO
-IF 			->  fimse senao ITERACAO fimsenao
-IF 			->  fimse senao LACO fimsenao
-IF 			->  fimse senao CONDICIONAL fimsenao
-IF 			->  fimse senao INSTRUCAO fimsenao
+ITERACAO -> repita numero vezes COMANDO fimrepita
 
-INSTRUCAO	->	mova  
-INSTRUCAO	->	mova numero passos 
-INSTRUCAO	->	vire para esquerda
-INSTRUCAO	->	vire para direita
-INSTRUCAO	->	identificador
-INSTRUCAO	->	pare
-INSTRUCAO	->	finalize
-INSTRUCAO	->	apague lampada
-INSTRUCAO	->	acenda lampada
-INSTRUCAO	->	aguarde ate CONDICAO
+LACO -> enquanto CONDICAO faca COMANDO fimpara
 
-CONDICAO 	->	robo pronto 
-CONDICAO 	->	robo ocupado
-CONDICAO 	->	robo parado
-CONDICAO 	->	robo movimentando
-CONDICAO 	->	frente robo bloqueada
-CONDICAO 	->	direita robo bloqueada
-CONDICAO 	->	esquerda robo bloqueada
-CONDICAO 	->	lampada acesa a frente
-CONDICAO 	->	lampada apagada a frente
-CONDICAO 	->	lampada acesa a esquerda
-CONDICAO 	->	lampada apagada a esquerda
-CONDICAO 	->	lampada acesa a direita
-CONDICAO 	->	lampada apagada a direita
+CONDICIONAL -> se CONDICAO entao COMANDO fimse CNDCNL
 
-FIM 		-> fimexecucao fimprograma
-FIM 		-> fimrepita fim
+CNDCNL -> senao COMANDO fimsenao
+CNDCNL -> ''
 
+INSTRUCAO -> mova 
+INSTRUCAO -> mova NUMPASSOS
+INSTRUCAO -> vire para SENTIDO
+INSTRUCAO -> identificador
+INSTRUCAO -> pare
+INSTRUCAO -> finalize
+INSTRUCAO -> apague lampada
+INSTRUCAO -> acenda lampada
+INSTRUCAO -> aguarde ate CONDICAO
+
+CONDICAO -> robo ESTADO
+CONDICAO -> DIRECAO robo bloqueada
+CONDICAO -> ESTADOLAMPADA a DIRECAO
+
+ESTADO -> pronto
+ESTADO -> ocupado
+ESTADO -> parado
+ESTADO -> movimentando
+
+DIRECAO -> frente
+DIRECAO -> SENTIDO
+
+ESTADOLAMPADA -> lampada acesa	
+ESTADOLAMPADA -> lampada apagada	
+
+NUMPASSOS -> numero passos
+
+SENTIDO -> direita
+SENTIDO -> esquerda
 
