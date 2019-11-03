@@ -54,7 +54,7 @@ class Token(object):
     a = 'a'
     acesa = 'acesa'
     apagada = 'apagada'
-    apagar = 'apagar'
+    apague = 'apague'
     fimprograma = 'fimprograma'
     passo = 'passo'
 
@@ -184,8 +184,11 @@ class Lexer(object):
 
         
         if contErro == 0:
-            print ("SEM ERROS LÉXICOS\nTokens:")
-            for token in self.tokens:
-                print(token)
+            print ("ANÁLISE LÉXICA: ")
+            print ("SEM ERROS LÉXICOS")
+            # for token in self.tokens:
+                # print(token)
    
-        return self.tokens
+
+        stringTokens = ' '.join(str(e.tipo) for e in self.tokens)
+        return stringTokens

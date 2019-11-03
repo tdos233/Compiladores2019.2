@@ -1,6 +1,7 @@
 import lexer
 import string
 import array
+import sintatico
 
 contaVazio = 0
 entrada = []
@@ -20,4 +21,5 @@ pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
 lexer = lexer.Lexer(x, vazias)
-lexer.criaToken()
+tokens = lexer.criaToken()
+sintatico.analise_sintatica(tokens)
