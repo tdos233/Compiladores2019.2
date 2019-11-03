@@ -186,9 +186,9 @@ class Lexer(object):
         if contErro == 0:
             print ("ANÁLISE LÉXICA: ")
             print ("SEM ERROS LÉXICOS")
+            token = Token('$', "$", self.linhaAtual[self.numLinha], self.numLinha,
+                                          self.posLinha)
+            self.tokens.append(token)
             # for token in self.tokens:
                 # print(token)
-   
-
-        stringTokens = ' '.join(str(e.tipo) for e in self.tokens)
-        return stringTokens
+        return self.tokens
