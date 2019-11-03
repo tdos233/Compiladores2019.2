@@ -13,9 +13,52 @@ class Token(object):
     'pare', 'finalize', 'apague', 'lampada', 'acenda', 'aguarde', 'ate',
     'robo', 'pronto', 'ocupado', 'parado', 'movimentando', 'frente', 'bloqueada', 'direita', 'esquerda', 'a', 'acesa', 'apagada', 'apagar', 'fimprograma', 'passo' ]
 
-    reservada = 'RESERVADA'
-    identificador = 'ID'
-    numero = 'NUMERO'
+    reservada = 'reservadas'
+    identificador = 'identificador'
+    numero = 'numero'
+    programainicio = 'programainicio'
+    como = 'como'
+    inicio = 'inicio'
+    fim = 'fim'
+    repita = 'repita'
+    vezes = 'vezes'
+    fimrepita = 'fimrepita'
+    enquanto = 'enquanto'
+    faca = 'faca'
+    fimpara = 'fimpara'
+    se = 'se'
+    entao = 'entao'
+    fimse = 'fimse'
+    senao = 'senao'
+    fimsenao = 'fimsenao'
+    mova = 'mova'
+    passos = 'passos'
+    vire = 'vire'
+    para = 'para'
+    pare = 'pare'
+    finalize = 'finalize'
+    apague = 'apague'
+    lampada = 'lampada'
+    acenda = 'acenda'
+    aguarde = 'aguarde'
+    ate = 'ate'
+    robo = 'robo'
+    pronto = 'pronto'
+    ocupado = 'ocupado'
+    parado = 'parado'
+    movimentando = 'movimentando'
+    frente = 'frente'
+    bloqueada = 'bloqueada'
+    direita = 'direita'
+    esquerda = 'esquerda'
+    a = 'a'
+    acesa = 'acesa'
+    apagada = 'apagada'
+    apagar = 'apagar'
+    fimprograma = 'fimprograma'
+    passo = 'passo'
+
+
     finalArquivo = 'EOF'
 
     def __init__(self, tipo, valor, linha, numLinha, posLinha):
@@ -95,6 +138,7 @@ class Lexer(object):
                         if stringId.casefold() in Token.reservadas:
                             # verifica se é palavra
                             token = Token(Token.reservada, stringId.lower(), self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
+                            token.tipo = stringId.lower()
                         # é identificador
                         else:
                             token = Token(Token.identificador, stringId, self.linhaAtual[self.numLinha], self.numLinha, self.posLinha)
