@@ -187,7 +187,7 @@ class Lexer(object):
             print ("ANÁLISE LÉXICA: ")
             print ("SEM ERROS LÉXICOS")
             token = Token('$', "$", self.linhaAtual[self.numLinha], self.numLinha,
-                                          self.posLinha)
+                                          self.posLinha+1)
             self.tokens.append(token)
             # for token in self.tokens:
                 # print(token)
