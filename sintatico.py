@@ -75,5 +75,5 @@ def analise_sintatica(tokens):
         elif 'acc' == actions:
             entrada=entrada[1:]
         else :
-            print('erro')
+            print('erro',entrada[0].numLinha+1)
             break
