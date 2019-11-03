@@ -20,6 +20,8 @@ marcaFinal = '\0'
 pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
+print("ANÁLISE LÉXICA: ")
 lexer = lexer.Lexer(x, vazias)
 tokens = lexer.criaToken()
+print("ANÁLISE SINTÁTICA: ")
 sintatico.analise_sintatica(tokens)

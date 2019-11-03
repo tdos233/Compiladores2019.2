@@ -184,8 +184,7 @@ class Lexer(object):
 
         
         if contErro == 0:
-            print ("ANÁLISE LÉXICA: ")
-            print ("SEM ERROS LÉXICOS")
+            print ("Sem erros léxicos")
             token = Token('$', "$", self.linhaAtual[self.numLinha], self.numLinha,
                                           self.posLinha+1)
             self.tokens.append(token)

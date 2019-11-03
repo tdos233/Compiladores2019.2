@@ -56,7 +56,7 @@ def analise_sintatica(tokens):
     entrada=tokens
     while len(entrada)!=0:
         actions=tabela_sintatica[pilha[len(pilha)-1].state][entrada[0].tipo]
-        print(actions,pilha[len(pilha)-1].state)
+        # print(actions,pilha[len(pilha)-1].state)
         if 's' in actions:
             pilha.append(state(entrada[0].tipo,int(actions.split('s')[1])))
             entrada=entrada[1:]
@@ -73,7 +73,8 @@ def analise_sintatica(tokens):
                 pilha.append(state(regra[0],stat))
                    
         elif 'acc' == actions:
+            print('Sem erros sintáticos')
             entrada=entrada[1:]
         else :
-            print('erro',entrada[0].numLinha+1)
+            print('Erro sintático na linha: ',entrada[0].numLinha+1)
             break
