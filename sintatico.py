@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import tabela
 class state(object):
     def __init__(self,tipo,estado):
@@ -54,13 +53,12 @@ SENTIDO->esquerda""".split('\n')
 def analise_sintatica(tokens):
     pilha=[state('',0)]
     tabela_sintatica=tabela.tabela
-    tokens+=' $'
-    entrada=tokens.split(' ')
+    entrada=tokens
     while len(entrada)!=0:
-        actions=tabela_sintatica[pilha[len(pilha)-1].state][entrada[0]]
-        # print(actions,pilha[len(pilha)-1].state,entrada)
+        actions=tabela_sintatica[pilha[len(pilha)-1].state][entrada[0].tipo]
+        print(actions,pilha[len(pilha)-1].state)
         if 's' in actions:
-            pilha.append(state(entrada[0],int(actions.split('s')[1])))
+            pilha.append(state(entrada[0].tipo,int(actions.split('s')[1])))
             entrada=entrada[1:]
         elif 'r' in actions:
             regra=gramatica[int(actions.split('r')[1])].split('->')
@@ -76,19 +74,6 @@ def analise_sintatica(tokens):
                    
         elif 'acc' == actions:
             entrada=entrada[1:]
-            print('ANÁLISE SINTÁTICA:')
-            print('SEM ERROS SINTÁTICOS')
         else :
-            print('ANÁLISE SINTÁTICA:')
-            print('PROGRAMA CONTÉM ERROS SINTÁTICOS')
+            print('erro')
             break
-        
-        
-
-# e=''
-# tokens = ["programainicio", "definainstrucao", "identificador"]
-# str1 = ' '.join(str(e) for e in tokens)
-    
-
-# analise_sintatica("""programainicio definainstrucao identificador como inicio mova numero passos se robo pronto entao mova fimse senao mova fimsenao aguarde ate robo pronto vire para esquerda apague lampada se robo parado entao vire para esquerda fimse repita numero vezes identificador fimrepita enquanto robo parado faca mova numero passos fimpara vire para direita mova numero passos aguarde ate robo pronto apague lampada fim execucaoinicio vire para direita fimexecucao fimprograma""")
-# analise_sintatica(str1)
