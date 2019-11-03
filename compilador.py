@@ -22,6 +22,9 @@ x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
 print("ANÁLISE LÉXICA: ")
 lexer = lexer.Lexer(x, vazias)
-tokens = lexer.criaToken()
-print("ANÁLISE SINTÁTICA: ")
-sintatico.analise_sintatica(tokens)
+tokens, erro = lexer.criaToken()
+
+# não tem erros léxicos, faz análise sintática
+if(not erro):
+    print("ANÁLISE SINTÁTICA: ")
+    sintatico.analise_sintatica(tokens)

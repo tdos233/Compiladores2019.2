@@ -190,4 +190,5 @@ class Lexer(object):
             self.tokens.append(token)
             # for token in self.tokens:
                 # print(token)
-        return self.tokens
+
+        return self.tokens, contErro
