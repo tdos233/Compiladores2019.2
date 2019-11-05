@@ -60,6 +60,8 @@ SENTIDO->esquerda""".split('\n')
 def analise_sintatica(tokens):
     countsemantico = 0
     sentido = 0
+    aux=''
+    aux2=''
     tabsim = tabelaS()
     pilha=[state('',0)]
     tabela_sintatica=tabela.tabela
@@ -103,8 +105,5 @@ def analise_sintatica(tokens):
         else :
             print('Erro sintático na linha: ',entrada[0].numLinha+1)
             break
-
-
-
 
 
