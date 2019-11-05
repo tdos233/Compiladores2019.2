@@ -1,7 +1,12 @@
+
+#coding: utf-8
+
 import lexer
 import string
 import array
 import sintatico
+
+
 
 contaVazio = 0
 entrada = []
@@ -20,11 +25,11 @@ marcaFinal = '\0'
 pulaLinha = '\n'
 x = pulaLinha.join(entrada)
 entrada.append(marcaFinal)
-print("ANÁLISE LÉXICA: ")
+print("ANÁLISE LEXICA: ")
 lexer = lexer.Lexer(x, vazias)
 tokens, erro = lexer.criaToken()
 
 # não tem erros léxicos, faz análise sintática
 if(not erro):
-    print("ANÁLISE SINTÁTICA: ")
+    print("ANÁLISE SINTATICA E SEMÂNTICA: ")
     sintatico.analise_sintatica(tokens)
