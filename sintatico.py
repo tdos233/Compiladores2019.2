@@ -84,13 +84,7 @@ def analise_sintatica(tokens):
             regra=gramatica[int(actions.split('r')[1])].split('->')
 
             #ANÁLISE SEMÂNTICA
-
-            if regra[0]!= 'LACO'and regra[0]!='ITERACAO':
-                sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
-            else:
-                sentido, countsemantico = semantica.analise_semantica1(aux, aux2, regra, tokens, tabsim, countsemantico, sentido,entrada[0].numLinha-1)
-
-
+            sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
             if regra[1]!= "''":
                 for i in range(len(regra[1].split(' '))):
                     pilha.pop()
