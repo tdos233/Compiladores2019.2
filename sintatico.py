@@ -26,10 +26,10 @@ COMANDO->ITERACAO
 COMANDO->INSTRUCAO
 COMANDO->LACO
 COMANDO->CONDICIONAL
-ITERACAO->repita numero vezes COMANDO fimrepita
-LACO->enquanto CONDICAO faca COMANDO fimpara
-CONDICIONAL->se CONDICAO entao COMANDO fimse CNDCNL
-CNDCNL->senao COMANDO fimsenao
+ITERACAO->repita numero vezes DECAUX fimrepita
+LACO->enquanto CONDICAO faca DECAUX fimpara
+CONDICIONAL->se CONDICAO entao DECAUX fimse CNDCNL
+CNDCNL->senao DECAUX fimsenao
 CNDCNL->''
 INSTRUCAO->mova NUMPASSOS
 INSTRUCAO->vire para SENTIDO
@@ -48,8 +48,8 @@ ESTADO->parado
 ESTADO->movimentando
 DIRECAO->frente
 DIRECAO->SENTIDO
-ESTADOLAMPADA->lampada acesa	
-ESTADOLAMPADA->lampada apagada	
+ESTADOLAMPADA->lampada acesa  
+ESTADOLAMPADA->lampada apagada    
 NUMPASSOS->numero passos
 NUMPASSOS->''
 SENTIDO->direita
@@ -85,7 +85,11 @@ def analise_sintatica(tokens):
 
             #ANÁLISE SEMÂNTICA
 
-            sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
+            if regra[0]!= 'LACO'and regra[0]!='ITERACAO':
+                sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
+            else:
+                sentido, countsemantico = semantica.analise_semantica1(aux, aux2, regra, tokens, tabsim, countsemantico, sentido,entrada[0].numLinha-1)
+
 
             if regra[1]!= "''":
                 for i in range(len(regra[1].split(' '))):
