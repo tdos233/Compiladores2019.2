@@ -2,10 +2,13 @@
 #coding: utf-8
 
 import tabela
+import geracaoDeCodigo as gdc
 class state(object):
-    def __init__(self,tipo,estado):
+    def __init__(self,tipo,estado,valor):
         self.tipo=tipo
         self.state=estado
+        self.code=''
+        self.valor=valor
 
 from tabeladesimbolos import simbolo
 from tabeladesimbolos import tabelaS
@@ -58,21 +61,26 @@ SENTIDO->esquerda""".split('\n')
 
 
 def analise_sintatica(tokens):
+    contif=0
+    contwhile=0
+    contelse=0
+    contbusy=0
     countsemantico = 0
     sentido = 0
     aux=''
     aux2=''
     tabsim = tabelaS()
-    pilha=[state('',0)]
+    pilha=[state('',0,'')]
     tabela_sintatica=tabela.tabela
     entrada=tokens
     while len(entrada)!=0:
         actions=tabela_sintatica[pilha[len(pilha)-1].state][entrada[0].tipo]
+        
         # print(actions,pilha[len(pilha)-1].state)
         if 's' in actions:
 
-            pilha.append(state(entrada[0].tipo,int(actions.split('s')[1])))
-  
+            pilha.append(state(entrada[0].tipo,int(actions.split('s')[1]),entrada[0].valor))
+            #print(pilha[-1].tipo,pilha[-1].code,entrada[0].valor)
             #codigo para auxiliar na análise semântica. pegar os valores do token do identificador
 
             if entrada[0].tipo == 'identificador':
@@ -82,6 +90,7 @@ def analise_sintatica(tokens):
             
         elif 'r' in actions:
             regra=gramatica[int(actions.split('r')[1])].split('->')
+            code=gdc.gerarCodigo(pilha,regra,contif,contelse,contwhile,contbusy)
 
             #ANÁLISE SEMÂNTICA
             sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
@@ -90,15 +99,22 @@ def analise_sintatica(tokens):
                     pilha.pop()
                                     
                 stat=int(tabela_sintatica[pilha[len(pilha)-1].state][regra[0]])
-                pilha.append(state(regra[0],stat))
+                st=state(regra[0],stat,'-')
+                st.code=code
+                pilha.append(st)
+                #print(pilha[-1].tipo,pilha[-1].code,entrada[0].valor)
             else :
                 stat=int(tabela_sintatica[pilha[len(pilha)-1].state][regra[0]])
-                pilha.append(state(regra[0],stat))
+                st=state(regra[0],stat,'-')
+                st.code=code
+                pilha.append(st)
+                #print(pilha[-1].tipo,pilha[-1].code,entrada[0].valor)
                    
         elif 'acc' == actions:
             print('Sem erros sintáticos')
             if countsemantico == 0:
-                print('Sem erros semânticos')
+                print('Sem erros semânticos\n')
+                print(pilha[-1].code)
             entrada=entrada[1:]
         else :
             print('Erro sintático na linha: ',entrada[0].numLinha+1)
