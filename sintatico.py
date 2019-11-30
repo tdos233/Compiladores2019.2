@@ -68,6 +68,8 @@ def analise_sintatica(tokens):
     contwhile=0
     contelse=0
     contbusy=0
+    contiter=0
+    contaguarde=0
     countsemantico = 0
     sentido = 0
     aux=''
@@ -109,7 +111,7 @@ def analise_sintatica(tokens):
             
         elif 'r' in actions:
             regra=gramatica[int(actions.split('r')[1])].split('->')
-            code=gdc.gerarCodigo(pilha,regra,contif,contelse,contwhile,contbusy)
+            code,contif,contelse,contwhile,contbusy,contiter,contaguarde=gdc.gerarCodigo(pilha,regra,contif,contelse,contwhile,contbusy,contiter,contaguarde)
 
             #ANÁLISE SEMÂNTICA
             sentido, countsemantico, aux3 = semantica.analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido)
@@ -133,7 +135,7 @@ def analise_sintatica(tokens):
             print('Sem erros sintáticos')
             if countsemantico == 0:
                 print('Sem erros semânticos\n')
-                print(pilha[-1].code)
+                open('programa.asm','w').write(code)
             entrada=entrada[1:]
         else :
             print('Erro sintático na linha: ',entrada[0].numLinha+1)
