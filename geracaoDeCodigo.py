@@ -31,34 +31,34 @@ def gerarCodigo(pilha,regra,contIf,contElse,contWhile,contbusy,contiter,contagua
             code=pilha[-1].code
         elif(regra[1]=='DIRECAO robo bloqueada'):
             if(pilha[-3].code=='frente'):
-                code='mov al, 4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 255\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                code='mov al, 4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 255\nje label\n'.replace('busy-num','busy'+str(contbusy))
                 contbusy+=1
             elif(pilha[-3].code=='direita'):
-                code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 15\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 15\nje label\n'.replace('busy-num','busy'+str(contbusy))
                 contbusy+=1
             else:
-                code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 240\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 240\nje label\n'.replace('busy-num','busy'+str(contbusy))
                 contbusy+=1
         elif(regra[1]=='ESTADOLAMPADA a DIRECAO'):
             if(pilha[-3].code=='lampada acesa'):
                 if(pilha[-1].code=='frente'):
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 7\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 7\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
                 elif(pilha[-1].code=='direita'):
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 11\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 11\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
                 else:
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 9\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 9\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
             else:
                 if(pilha[-1].code=='frente'):
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 8\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 8\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
                 elif(pilha[-1].code=='direita'):
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 12\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 12\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
                 else:
-                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\nje busy-num\nin al, 10\ncmp al, 10\nje label\n'.replace('busy-num','busy'+str(contbusy))
+                    code='mov al,4\nout 9, al\nbusy-num: in al, 11\ncmp al, 00000001b\njne busy-num\nin al, 10\ncmp al, 10\nje label\n'.replace('busy-num','busy'+str(contbusy))
                     contbusy+=1
     elif (regra[0]=='INSTRUCAO'):
         if(regra[1]=='mova NUMPASSOS'):

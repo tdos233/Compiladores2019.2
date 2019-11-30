@@ -4,24 +4,14 @@ iteracao0: call Trilha
 loop iteracao0
 hlt
 Trilha proc
-mov al, 1
-out 9,al
-mov al, 0
+mov al, 4
 out 9, al
-mov al, 1
-out 9,al
-mov al, 0
-out 9, al
-mov al, 1
-out 9,al
-mov al, 0
-out 9, al
-aguarde0: in al,11
-cmp al,00000000b
-jne aguarde0
-in al,9
-cmp al,0
-jne if0
+busy0: in al, 11
+cmp al, 00000001b
+jne busy0
+in al, 10
+cmp al, 255
+je if0
 jne else0
 else0:
 mov al, 3

@@ -1,9 +1,7 @@
 PROGRAMAINICIO
 	DEFINAINSTRUCAO Trilha COMO
 	INiciO
-		mova 3 passos 
-		aguarde ate robo pronto
-		se robo movimentando entao vire para esquerda fimse senao vire para direita fimsenao
+		se frente robo bloqueada entao vire para esquerda fimse senao vire para direita fimsenao
 	Fim
 	EXECUCAOinicio
 		Repita 3 VEZES Trilha fimrepita
