@@ -61,6 +61,9 @@ SENTIDO->esquerda""".split('\n')
 
 
 def analise_sintatica(tokens):
+    func = ''
+    aux3 = -1
+    aux4 = -1
     contif=0
     contwhile=0
     contelse=0
@@ -83,17 +86,33 @@ def analise_sintatica(tokens):
             #print(pilha[-1].tipo,pilha[-1].code,entrada[0].valor)
             #codigo para auxiliar na análise semântica. pegar os valores do token do identificador
 
-            if entrada[0].tipo == 'identificador':
-                aux = entrada[0].valor
-                aux2 = entrada[0].numLinha
+                
+
+            if entrada[0].valor == 'definainstrucao':
+                aux = entrada[1].valor
+                aux2 = entrada[1].numLinha
+                aux3 = -1
+                if entrada[6].valor == 'direita':
+                    aux4 = 1
+                elif entrada[6].valor == 'esquerda':
+                    aux4 = 0
+                else:
+                    aux4 = -1;
+
+            
+                
+                
+
             entrada=entrada[1:]
+
+            
             
         elif 'r' in actions:
             regra=gramatica[int(actions.split('r')[1])].split('->')
             code=gdc.gerarCodigo(pilha,regra,contif,contelse,contwhile,contbusy)
 
             #ANÁLISE SEMÂNTICA
-            sentido, countsemantico = semantica.analise_semantica(aux, aux2, regra, entrada, tabsim, countsemantico, sentido)
+            sentido, countsemantico, aux3 = semantica.analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido)
             if regra[1]!= "''":
                 for i in range(len(regra[1].split(' '))):
                     pilha.pop()

@@ -1,10 +1,9 @@
 class simbolo(object):
-    def __init__(self, nome, numLinha, tipo=None):
+    def __init__(self, nome, numLinha, vireParaFinal = None, vireParaInicio = None):
         self.nome = nome
-        self.tipo = tipo
         self.numLinha = numLinha
-
-
+        self.vireParaFinal = vireParaFinal
+        self.vireParaInicio = vireParaInicio
 
 class tabelaS(object):
     def __init__(self):
@@ -18,3 +17,6 @@ class tabelaS(object):
         simbolo = self.simbolos.get(nome)
         
         return simbolo
+
+    
+        
