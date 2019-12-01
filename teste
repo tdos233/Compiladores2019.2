@@ -15,6 +15,6 @@ PROGRAMAINICIO
 		fimpara
 	Fim
 	EXECUCAOinicio
-		Trilha
+		repita 3 vezes vire para direita fimrepita
 	fimEXECUCAO
 fimprograma

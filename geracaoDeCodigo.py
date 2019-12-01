@@ -9,6 +9,8 @@ def gerarCodigo(pilha,regra,contIf,contElse,contWhile,contbusy,contiter,contagua
     bloqueio='cmp al,255\nje label\n'
     lampadaAcesa='cmp al,7\nje label\n'
     lampadaApaguada='cmp al,8\nje label\n'
+    acendalampada='mov al,5\nout 9,al\nmov cx,50\nbusy:\nloop busy\n'
+    apaguelampada='mov al,6\nout 9,al\nmov cx,50\nbusy:\nloop busy\n'
     if (regra[0]=='SENTIDO'):
         code=pilha[-1].tipo
     elif(regra[0]=='NUMPASSOS'):
@@ -94,9 +96,11 @@ def gerarCodigo(pilha,regra,contIf,contElse,contWhile,contbusy,contiter,contagua
         elif (regra[1]=='finalize'):
             code='hlt\n'
         elif(regra[1]=='apague lampada'):
-            code='mov al, 6\nout 9,al\n'
+            code=apaguelampada.replace('busy','busy'+str(contbusy))+pare.replace('busy','busy'+str(contbusy+1))
+            contbusy+=2
         elif(regra[1]=='acenda lampada'):
-            code='mov al, 5\nout 9,al\n'
+            code=acendalampada.replace('busy','busy'+str(contbusy))+pare.replace('busy','busy'+str(contbusy+1))
+            contbusy+=2
         else:
             code='label: '+pilha[-1].code
             code=delay.replace('busy','busy'+str(contbusy))+code.replace('label','aguarde'+str(contaguarde)).replace('jz','jnz')
@@ -115,7 +119,7 @@ def gerarCodigo(pilha,regra,contIf,contElse,contWhile,contbusy,contiter,contagua
             code='jmp finalCondicional\n'.replace('finalCondicional','if'+str(contIf)+'fim')
             contElse+=1
     elif(regra[0]=='ITERACAO'):
-        code='mov cx, ' + pilha[-4].valor + '\nlabel: '+ pilha[-2].code +'loop label\n'
+        code='mov cx, ' + pilha[-4].valor + '\nlabel: push cx\n'+ pilha[-2].code +'pop cx\nloop label\n'
         code=code.replace('label','iteracao'+str(contiter))
         contiter+=1
     elif(regra[0]=='LACO'):

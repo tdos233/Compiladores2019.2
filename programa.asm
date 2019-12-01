@@ -2,7 +2,20 @@
 mov cx,50
 busy:
 loop busy
-call Trilha
+mov cx, 3
+iteracao0: push cx
+mov al,3
+out 9,al
+mov cx,50
+busy9:
+loop busy9
+mov al,0
+out 9,al
+mov cx,50
+busy10:
+loop busy10
+pop cx
+loop iteracao0
 hlt
 virar proc
 mov al,3
