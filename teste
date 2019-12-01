@@ -10,6 +10,7 @@ PROGRAMAINICIO
 			mova
 			aguarde ate robo pronto
 			se frente robo bloqueada entao virar fimse
+			se lampada acesa a frente entao vire para direita fimse
 		fim
 		fimpara
 	Fim

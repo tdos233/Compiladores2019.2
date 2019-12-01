@@ -51,8 +51,8 @@ ESTADO->parado
 ESTADO->movimentando
 DIRECAO->frente
 DIRECAO->SENTIDO
-ESTADOLAMPADA->lampada acesa  
-ESTADOLAMPADA->lampada apagada    
+ESTADOLAMPADA->lampada acesa
+ESTADOLAMPADA->lampada apagada
 NUMPASSOS->numero passos
 NUMPASSOS->''
 SENTIDO->direita
@@ -83,7 +83,6 @@ def analise_sintatica(tokens):
         
         # print(actions,pilha[len(pilha)-1].state)
         if 's' in actions:
-
             pilha.append(state(entrada[0].tipo,int(actions.split('s')[1]),entrada[0].valor))
             #print(pilha[-1].tipo,pilha[-1].code,entrada[0].valor)
             #codigo para auxiliar na análise semântica. pegar os valores do token do identificador
@@ -117,8 +116,8 @@ def analise_sintatica(tokens):
             sentido, countsemantico, aux3 = semantica.analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido)
             if regra[1]!= "''":
                 for i in range(len(regra[1].split(' '))):
-                    pilha.pop()
-                                    
+                    pilha.pop().valor
+
                 stat=int(tabela_sintatica[pilha[len(pilha)-1].state][regra[0]])
                 st=state(regra[0],stat,'-')
                 st.code=code
