@@ -61,6 +61,7 @@ SENTIDO->esquerda""".split('\n')
 
 
 def analise_sintatica(tokens):
+    auxIdentificador = ''
     func = ''
     aux3 = -1
     aux4 = -1
@@ -99,6 +100,8 @@ def analise_sintatica(tokens):
                     aux4 = 0
                 else:
                     aux4 = -1;
+            elif entrada[0].tipo == 'identificador':
+                auxIdentificador = entrada[0].valor
 
             
                 
@@ -113,7 +116,7 @@ def analise_sintatica(tokens):
             code,contif,contelse,contwhile,contbusy,contiter,contaguarde=gdc.gerarCodigo(pilha,regra,contif,contelse,contwhile,contbusy,contiter,contaguarde)
 
             #ANÁLISE SEMÂNTICA
-            sentido, countsemantico, aux3 = semantica.analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido)
+            sentido, countsemantico, aux3 = semantica.analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido, auxIdentificador)
             if regra[1]!= "''":
                 for i in range(len(regra[1].split(' '))):
                     pilha.pop().valor

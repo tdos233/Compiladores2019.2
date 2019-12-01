@@ -3,7 +3,7 @@ from tabeladesimbolos import simbolo
 from tabeladesimbolos import tabelaS
 import sintatico
 
-def analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido):
+def analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemantico, sentido, auxIdentificador):
 
 	    #salvar sempre o ultimo valor de sentido
 
@@ -41,7 +41,7 @@ def analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemant
 
             #verificar se o movimento esta no final de uma funcao e atualizar tabela-simbolo
 
-                elif entrada[0].tipo == "fim":
+                elif entrada[0].tipo == "fim" and (entrada[1] == "execucaoinicio" or entrada[1] == "definainstrucao"):
                     if sentido == 1:
                         aux3 = 1;
                     elif sentido == 0:
@@ -64,17 +64,20 @@ def analise_semantica(aux, aux2, aux3, aux4, regra, entrada, tabsim, countsemant
 	    #verificar se instrução CHAMADA já foi declarada anteriormente
 
             elif regra[0] == "INSTRUCAO" and regra[1] == "identificador":
-                if tabsim.lookup(aux) is None:
-                    print('Erro semântico na linha', aux2 + 1,': chamada para', aux, 'porém instrução não declarada')
+                if tabsim.lookup(auxIdentificador) is None:
+                    print(auxIdentificador)
+                    print('Erro semântico na linha', aux2 + 1,': chamada para', auxIdentificador, 'porém instrução não declarada')
                     countsemantico = 1
 
            #caso instrucao termine com movimento vire para sentido, verificar se apos chamada tem vire para outro sentido
 
-                elif entrada[3].valor == "esquerda" and tabsim.lookup(aux).vireParaFinal == 1:
-                    print('Erro semântico na linha', entrada[3].numLinha+1, ': vire para esquerda apos instrucao com final vire para direita')
-                    countsemantico = 1
-                elif entrada[3].valor == "direita" and tabsim.lookup(aux).vireParaFinal == 0:
-                    print('Erro semântico na linha', entrada[3].numLinha+1, ': vire para direita apos instrucao com final vire para esquerda')
+                elif len(entrada) > 2 and tabsim.lookup(auxIdentificador).vireParaFinal == 1:
+                    if entrada[3].valor == "esquerda":
+                        print('Erro semântico na linha', entrada[3].numLinha+1, ': vire para esquerda apos instrucao com final vire para direita')
+                        countsemantico = 1
+                elif len(entrada) > 2 and tabsim.lookup(auxIdentificador).vireParaFinal == 0:
+                    if entrada[3].valor == "direita":    
+                        print('Erro semântico na linha', entrada[3].numLinha+1, ': vire para direita apos instrucao com final vire para esquerda')
                     countsemantico = 1
 
             return sentido, countsemantico, aux3
