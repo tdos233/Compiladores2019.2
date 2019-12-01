@@ -1,9 +1,19 @@
 PROGRAMAINICIO
+	DEFINAINSTRUCAO virar COMO
+	INiciO
+		vire para direita
+	fim
 	DEFINAINSTRUCAO Trilha COMO
 	INiciO
-		se frente robo bloqueada entao vire para esquerda fimse senao vire para direita fimsenao
+		enquanto robo pronto faca
+		INiciO
+			mova
+			aguarde ate robo pronto
+			se frente robo bloqueada entao virar fimse
+		fim
+		fimpara
 	Fim
 	EXECUCAOinicio
-		Repita 3 VEZES Trilha fimrepita
+		Trilha
 	fimEXECUCAO
 fimprograma
